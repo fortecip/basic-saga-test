@@ -10,11 +10,11 @@ class App extends Component {
     const store = createStore(allReducers);
     return (
       <Provider store={store}>
-	<div className="App">
-	  <header className="App-header">
-	    <InnerComponent />
-	  </header>
-	</div>
+        <div className="App">
+          <header className="App-header">
+            <InnerComponent />
+          </header>
+        </div>
       </Provider>
     );
   }
