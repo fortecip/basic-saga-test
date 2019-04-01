@@ -1,6 +1,8 @@
 import { combineReducers } from 'redux';
-import loginReducer from './loginReducer';
+import request from './requestReducer';
+import requestAsync from './requestReducerAsync';
 const allReducers = combineReducers({
-  login: loginReducer
+  request,
+  requestAsync
 });
 export default allReducers;

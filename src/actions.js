@@ -1,7 +1,7 @@
-export const login=(data)=>{
+export const requestAction = (data) => {
   return {
-    type : 'LOGIN',
-    data
+    type: 'REQUEST',
+    data: data
   };
 };
 

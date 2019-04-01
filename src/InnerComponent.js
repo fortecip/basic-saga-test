@@ -1,31 +1,26 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import {  bindActionCreators } from 'redux';
-import { login } from './actions.js';
-import axios from 'axios';
-
+import { bindActionCreators } from 'redux';
+import { requestAction } from './actions'
 class InnerComponent extends Component {
-  componentDidMount(){
+  componentDidMount() {
     //this.props.login({success:true});
   }
-
-  _onButtonClick = ()=>{
-    axios.get('https://jsonplaceholder.typicode.com/todos').then((response)=>{
-      const { title } = response.data[0];
-      this.props.login({title:title});
-    });
+  _onButtonClick = () => {
+    const { requestAction } = this.props;
+    requestAction({title:'asd'});
   }
   render() {
-    const { getStatus } = this.props;
-    const title = getStatus && getStatus.title;
+    const { getRequestAsync } = this.props;
+    const title = getRequestAsync && getRequestAsync.title;
     return (
       <div className="App">
-	<header className="App-header">
-	  first Title: {title} 
-	  <button onClick={this._onButtonClick}>
-	    LOGIN
+        <header className="App-header">
+          first Title: {title}
+          <button onClick={() => this._onButtonClick()}>
+            LOGIN
 	  </button>
-	</header>
+        </header>
       </div>
     );
   }
@@ -33,13 +28,14 @@ class InnerComponent extends Component {
 
 function mapStateToProps(state) {
   return {
-    getStatus : state.login,
+    getRequest: state.request,
+    getRequestAsync: state.requestAsync,
   }
 }
 
-function matchDispatchToProps(dispatch){
+function matchDispatchToProps(dispatch) {
   return bindActionCreators({
-    login
-  },dispatch)
+    requestAction
+  }, dispatch)
 }
-export default connect(mapStateToProps,matchDispatchToProps)(InnerComponent);
+export default connect(mapStateToProps, matchDispatchToProps)(InnerComponent);
